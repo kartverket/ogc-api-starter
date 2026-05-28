@@ -1,4 +1,4 @@
-FROM postgis/postgis:17-3.6-alpine
+FROM postgis/postgis:18-3.6-alpine
 
 COPY ./dumps/* /tmp/dumps/
 COPY initdb.sh /docker-entrypoint-initdb.d/initdb.sh
