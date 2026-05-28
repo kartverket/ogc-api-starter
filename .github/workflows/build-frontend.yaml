@@ -50,7 +50,7 @@ jobs:
         id: docker
         uses: docker/build-push-action@v7
         with:
-          context: trex
+          context: frontend
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
