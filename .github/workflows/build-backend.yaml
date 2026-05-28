@@ -1,0 +1,79 @@
+name: OGC API Backend
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+      - "config/**"
+
+env:
+  docker_registry: ghcr.io
+  image_name: kartverket/ogc-api-starter-backend
+
+jobs:
+  build:
+    name: Build image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      actions: read
+      id-token: write
+
+    outputs:
+      tags: ${{ steps.meta.outputs.tags }}
+      image_url: ${{ steps.set_output.outputs.image_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ env.docker_registry }}/${{ env.image_name}}
+          tags: |
+            type=sha,format=long
+
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ${{ env.docker_registry }}
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Build docker image and push
+        id: docker
+        uses: docker/build-push-action@v7
+        with:
+          context: trex
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          push: true
+
+      - name: Summarize Image Digest and Set Output
+        id: set_output
+        run: |
+          echo "Full Image URL: ${{ env.docker_registry }}/${{ env.image_name }}:${{ steps.meta.outputs.version }}@${{steps.docker.outputs.digest}}" >> $GITHUB_STEP_SUMMARY
+          echo "image_url=${{ env.docker_registry }}/${{ env.image_name }}:${{ steps.meta.outputs.version }}@${{steps.docker.outputs.digest}}" >> $GITHUB_OUTPUT
+
+  run-pharos:
+    name: Run Pharos
+    runs-on: ubuntu-latest
+    needs: build
+    # Only run on pushes to default branch
+    if: github.event_name == 'push' && github.ref_name == github.event.repository.default_branch
+    permissions:
+      actions: read
+      packages: read
+      contents: read
+      security-events: write
+    steps:
+      - name: "Run Pharos"
+        uses: kartverket/pharos@v0.6.3
+        with:
+          image_url: ${{ needs.build.outputs.image_url }}
