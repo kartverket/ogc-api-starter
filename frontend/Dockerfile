@@ -1,4 +1,4 @@
-FROM ghcr.io/kartverket/datadeling-ogcapi-frontend:0.1.2@sha256:27e70428f0961a2e6f80d2c14cf732a1b7884d62d890f76cd93332ca6d6e406a
+FROM ghcr.io/kartverket/datadeling-ogcapi-frontend:frontend-v0.1.3@sha256:9ba799e79a9739c2e9e85ce188331795c15b1267fc832354260ddd1181647dee
 
 COPY config/pygeoapi-config.yml /apiconfig/config.yml
 
