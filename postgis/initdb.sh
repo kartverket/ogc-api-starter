@@ -1,15 +1,17 @@
 #!/bin/bash
 set -e
 
-directory=/tmp/dumps
+psql -U "$DB_USER" -c "CREATE DATABASE $DB_NAME;"
+psql -U "$DB_USER" -d "$DB_NAME" -c "CREATE EXTENSION postgis;"
 
-db="$DB_NAME"
+ogr2ogr -f PGDump /vsistdout/ /tmp/data/districts.json \
+  -nln districts \
+  -lco GEOMETRY_NAME=geometry \
+  -lco FID=id \
+  | psql -U "$DB_USER" -d "$DB_NAME"
 
-psql -U "$DB_USER" -c "CREATE DATABASE $db;"
-psql -U "$DB_USER" -d "$db" -c "CREATE EXTENSION postgis;"
-
-for file in "$directory"/*.sql; do
-    psql -U "$DB_USER" -d "$db" -f "$file"
-done
-
-rm -r $directory
+ogr2ogr -f PGDump /vsistdout/ /tmp/data/locations.json \
+  -nln locations \
+  -lco GEOMETRY_NAME=geometry \
+  -lco FID=id \
+  | psql -U "$DB_USER" -d "$DB_NAME"

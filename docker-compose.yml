@@ -7,7 +7,7 @@ services:
       - "3000:3000"
     environment:
       - API_BASE_URL=http://backend:5000
-      - API_BASE_URL_PUBLIC=http://localhost:5000
+      - API_BASE_URL_PUBLIC=http://localhost:5001
     platform: linux/amd64
     depends_on:
       backend:
@@ -20,9 +20,9 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
-      - PYGEOAPI_URL=http://localhost:5000
+      - PYGEOAPI_URL=http://localhost:5001
       - DB_HOST=postgis
       - DB_NAME=pygeoapi_test
       - DB_USER=postgres
@@ -42,6 +42,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
+      - ./data:/tmp/data
     environment:
       - DB_NAME=pygeoapi_test
       - DB_USER=postgres

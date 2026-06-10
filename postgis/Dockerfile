@@ -1,13 +1,8 @@
 FROM postgis/postgis:18-3.6-alpine
 
-COPY ./dumps/* /tmp/dumps/
 COPY initdb.sh /docker-entrypoint-initdb.d/initdb.sh
 
-RUN apk --update add --no-cache unzip \
-    && cd /tmp/dumps \
-    && unzip '*.zip' \
-    && rm *.zip \
-    && chown -R postgres:postgres /tmp/dumps \
+RUN apk --update add --no-cache gdal-tools \
     && chmod +x /docker-entrypoint-initdb.d/initdb.sh
 
 WORKDIR /
