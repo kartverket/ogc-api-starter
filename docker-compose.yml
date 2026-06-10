@@ -7,7 +7,7 @@ services:
       - "3000:3000"
     environment:
       - API_BASE_URL=http://backend:5000
-      - API_BASE_URL_PUBLIC=http://localhost:5000
+      - API_BASE_URL_PUBLIC=http://localhost:5001
     platform: linux/amd64
     depends_on:
       backend:
@@ -20,44 +20,15 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
-      - PYGEOAPI_URL=http://localhost:5000
-      - DB_HOST=postgis
-      - DB_NAME=pygeoapi_test
-      - DB_USER=postgres
-      - DB_PASSWORD=qwer1234
+      - PYGEOAPI_URL=http://localhost:5001
     platform: linux/amd64
-    depends_on:
-      postgis:
-        condition: service_healthy
-    networks:
-      - pygeoapi-network
-
-  postgis:
-    build:
-      context: ./postgis
-    platform: linux/amd64
-    ports:
-      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql
-    environment:
-      - DB_NAME=pygeoapi_test
-      - DB_USER=postgres
-      - POSTGRES_PASSWORD=qwer1234
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -h localhost -U postgres" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
+      - ./data:/data
     networks:
       - pygeoapi-network
 
 networks:
   pygeoapi-network:
     driver: bridge
-
-volumes:
-  postgres_data:
