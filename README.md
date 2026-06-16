@@ -7,7 +7,7 @@ Utgangspunkt for å sette opp OGC-API-er. Pygeoapi-basert backend og Next-basert
 For å hente interne docker images lokalt må du autentisere deg via Docker.
 
 1. Lag en PAT (Personal Access Token) på https://github.com/settings/tokens med `read:packages` scope
-2. Kopier token og autoriser mot Kartverket
+2. Kopier token-streng (denne ser du ikke igjen etter dette steget) og autoriser mot Kartverket via Configure SSO
 3. Logg inn med Docker ved f.eks. `echo '<PAT>' | docker login ghcr.io -u <Github-brukernavn> --password-stdin`
 
 Kjør opp appene med
