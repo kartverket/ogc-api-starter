@@ -75,6 +75,6 @@ jobs:
       security-events: write
     steps:
       - name: "Run Pharos"
-        uses: kartverket/pharos@v0.6.3
+        uses: kartverket/pharos@v0.6.4
         with:
           image_url: ${{ needs.build.outputs.image_url }}
