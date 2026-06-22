@@ -1,6 +1,7 @@
 # OGC API starter kit
 
 Utgangspunkt for å sette opp OGC-API-er. Pygeoapi-basert backend og Next-basert frontend.
+Mer dokumentasjon her: https://kartverket.github.io/ogcapi-docs/docs
 
 ## Lokal kjøring
 
