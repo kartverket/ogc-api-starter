@@ -78,3 +78,4 @@ jobs:
         uses: kartverket/pharos@v0.6.4
         with:
           image_url: ${{ needs.build.outputs.image_url }}
+          trivy_category: 'Frontend'
