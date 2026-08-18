@@ -7,11 +7,11 @@ services:
       - "3000:3000"
     environment:
       - API_BASE_URL=http://backend:5000
-      - API_BASE_URL_PUBLIC=http://localhost:5001
+      - BASE_URL_PUBLIC=http://localhost:3000
     platform: linux/amd64
     depends_on:
       backend:
-        condition: service_healthy
+        condition: service_started
     networks:
       - pygeoapi-network
 

@@ -1,0 +1,10 @@
+# HEALTHCHECK not defined - ikke relevant for SKIP
+# https://avd.aquasec.com/misconfig/dockerfile/general/avd-ds-0026/
+DS-0026
+
+# CVE-2025-47273 (setuptools) and GHSA-6v7p-g79w-8964 (msgpack):
+# vendored inside pip/_vendor/, not installed packages, not
+# independently patchable. Reviewed 2026-08-07 — recheck when
+# bumping pip past 26.1.2, in case vendor.txt has been updated.
+CVE-2025-47273
+GHSA-6v7p-g79w-8964
