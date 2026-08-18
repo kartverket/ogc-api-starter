@@ -1,4 +1,4 @@
-FROM ghcr.io/kartverket/datadeling-ogcapi-frontend:frontend-v0.3.0@sha256:e987c7b83b9cc26e7879bbcf569eeab4bdecfcc3cfd10b42576da98621472712
+FROM ghcr.io/kartverket/datadeling-ogcapi-frontend:frontend-v0.4.0@sha256:725a63e008ed3f91e826883d1821dc904167daadde70e09697b22526244a9eea
 
 USER apprunner
 
