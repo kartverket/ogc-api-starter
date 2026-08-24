@@ -26,12 +26,14 @@ Eksempel-config [her](/config/pygeoapi-config.yml)
 
 ## Nye versjoner
 
-For å få Dependabot-PRer ved nye versjoner av OGC API Frontend og Pygeoapi, følg dokumentasjonen hos SKIP her:
-https://skip.kartverket.no/docs/applikasjon-utrulling/github-actions/tilgang-til-interne-pakker-fra-github-actions
+For å få Dependabot-PRer ved nye versjoner av OGC API Frontend og Pygeoapi,
+følg dokumentasjonen hos SKIP [her](https://skip.kartverket.no/docs/applikasjon-utrulling/github-actions/tilgang-til-interne-pakker-fra-github-actions).
 
 ## Apps-repo-oppsett
 
-Fullt eksempel: https://github.com/kartverket/datadeling-apps/blob/main/env/atgcp1-dev/datadeling-ogc-api-starter/ogcapi.jsonnet
+[Fullt eksempel](https://github.com/kartverket/datadeling-apps/blob/main/env/atgcp1-dev/datadeling-ogc-api-starter/ogcapi.jsonnet)
+
+Man trenger også versjons-filer for docker-imagene, f.eks. `ogcapi-frontend-version` og `ogcapi-backend-version`.
 
 Noen miljøvariabler må settes opp i miljøet appene kjører i, typisk via Application-manifestet.
 
@@ -52,3 +54,24 @@ DB_USER=<brukernavn>
 API_BASE_URL=<Kubernetes-ingress til backend>
 API_BASE_URL_PUBLIC=<backend-ingress>
 ```
+
+## Automatisk deploy til dev-miljø
+
+Automatisk deploy til dev-miljøet skjer via `argo`-jobben i Github Actionsene. Denne trenger chainguard for å fungere.
+
+Hvis man ikke ønsker automatisk deploy så kan man fjerne `argo`-jobben fra Github Actionsene.
+
+### Chainguard
+
+Opprett en mappe som heter `chainguard` i `.github`-mappen i apps-repoet deres. Hvis OGC-API-repoet deres heter `xxx-ogcapi`,
+så må dere legge en fil som heter `xxx-ogcapi.sts.yaml` i `chainguard`-mappen. Innholdet i filen skal være som følger:
+
+```yaml
+issuer: https://token.actions.githubusercontent.com
+subject: repo:kartverket/xxx-ogcapi:ref:refs/heads/main
+
+permissions:
+  contents: write
+```
+
+Se mer doc fra SKIP [her](https://skip.kartverket.no/docs/applikasjon-utrulling/github-actions/tilgang-til-repoer-med-tokens-fra-github-actions).
