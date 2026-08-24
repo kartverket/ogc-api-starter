@@ -8,3 +8,7 @@ DS-0026
 # bumping pip past 26.1.2, in case vendor.txt has been updated.
 CVE-2025-47273
 GHSA-6v7p-g79w-8964
+
+# We do not run an OpenSSL QUIC server, so this is not exploitable in our deployment.
+# Revisit/remove once Debian ships a patched libssl3t64.
+CVE-2026-14456
