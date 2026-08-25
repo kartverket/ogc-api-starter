@@ -57,21 +57,13 @@ API_BASE_URL_PUBLIC=<backend-ingress>
 
 ## Automatisk deploy til dev-miljø
 
-Automatisk deploy til dev-miljøet skjer via `argo`-jobben i Github Actionsene. Denne trenger chainguard for å fungere.
+Automatisk deploy til dev-miljøet skjer via `argo`-jobben i byggejobbene. Denne trenger OctoSTS for å fungere.
 
-Hvis man ikke ønsker automatisk deploy så kan man fjerne `argo`-jobben fra Github Actionsene.
+Hvis man ikke ønsker automatisk deploy så kan man fjerne `argo`-jobbene.
 
-### Chainguard
+### OctoSTS
 
-Opprett en mappe som heter `chainguard` i `.github`-mappen i apps-repoet deres. Hvis OGC-API-repoet deres heter `xxx-ogcapi`,
-så må dere legge en fil som heter `xxx-ogcapi.sts.yaml` i `chainguard`-mappen. Innholdet i filen skal være som følger:
+OctoSTS brukes for å gi tilgang til å skrive til apps-repoet deres fra Github Actions i dette repoet,
+og automatisk deploy fungerer ved å oppdatere versjons-filene i apps-repoet.
 
-```yaml
-issuer: https://token.actions.githubusercontent.com
-subject: repo:kartverket/xxx-ogcapi:ref:refs/heads/main
-
-permissions:
-  contents: write
-```
-
-Se mer doc fra SKIP [her](https://skip.kartverket.no/docs/applikasjon-utrulling/github-actions/tilgang-til-repoer-med-tokens-fra-github-actions).
+Se mer doc fra SKIP for hvordan dette settes opp [her](https://skip.kartverket.no/docs/applikasjon-utrulling/github-actions/tilgang-til-repoer-med-tokens-fra-github-actions).
