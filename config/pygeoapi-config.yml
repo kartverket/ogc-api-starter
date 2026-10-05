@@ -141,13 +141,11 @@ resources:
           mimetype: application/vnd.mapbox-vector-tile
 
       - type: map
-        name: postgis_mapscript.PostGISMapScriptProvider
-        data: "host=${DB_HOST} dbname=${DB_NAME} user=${DB_USER} password=${DB_PASSWORD}"
-        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-        always_xy: true
+        name: MapScript
+        data: PG:host='${DB_HOST}' dbname='${DB_NAME}' user='${DB_USER}' password='${DB_PASSWORD}' port=5432 tables=public.fylker
         options:
           type: MS_LAYER_POLYGON
-          layer_data: "geometry FROM public.fylker USING UNIQUE nr USING SRID=25833"
+          layer: fylker
           projection: 25833
           style: /pygeoapi/styles/fylker.inc
         format:
