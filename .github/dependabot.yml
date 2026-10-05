@@ -1,12 +1,5 @@
 version: 2
 
-registries:
-  ghcr:
-    type: docker-registry
-    url: https://ghcr.io
-    username: x-access-token
-    password: ${{ secrets.SHARED_PACKAGES_READ_TOKEN }}
-
 updates:
   - package-ecosystem: "github-actions"
     directory: ".github/workflows"
@@ -14,8 +7,6 @@ updates:
       interval: "daily"
 
   - package-ecosystem: "docker"
-    registries:
-      - ghcr
     directories:
       - "/backend"
       - "/frontend"

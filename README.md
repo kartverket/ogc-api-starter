@@ -24,11 +24,6 @@ Pygeoapi-dokumentasjon: https://docs.pygeoapi.io/en/latest/configuration.html
 
 Eksempel-config [her](/config/pygeoapi-config.yml)
 
-## Nye versjoner
-
-For å få Dependabot-PRer ved nye versjoner av OGC API Frontend og Pygeoapi,
-følg dokumentasjonen hos SKIP [her](https://skip.kartverket.no/docs/applikasjon-utrulling/github-actions/tilgang-til-interne-pakker-fra-github-actions).
-
 ## Apps-repo-oppsett
 
 [Fullt eksempel](https://github.com/kartverket/datadeling-apps/blob/main/env/atgcp1-dev/datadeling-ogc-api-starter/ogcapi.jsonnet)
