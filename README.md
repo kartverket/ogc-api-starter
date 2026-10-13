@@ -22,9 +22,8 @@ Eksempel-config [her](/config/pygeoapi-config.yml)
 ### Bilder
 
 Du kan konfigurere et bilde for forsiden og egne bilder for hver collection.
-Se [eksempel på løsningen](https://datadeling-ogcapi.atgcp1-dev.kartverket.cloud).
 
-Legg collection-bilder i `config/collection-images/` og referer til dem under
+Legg collection-bilder i `assets/collection-images/` og referer til dem under
 `resources.<collection-id>.links` i `config/pygeoapi-config.yml`. For eksempel:
 
 ```yaml
@@ -39,12 +38,12 @@ resources:
         href: /assets/collection-images/fylker.png
 ```
 
-Her må filen ligge på `config/collection-images/fylker.png`. Bruk riktig `image/*`-type
+Her må filen ligge på `assets/collection-images/fylker.png`. Bruk riktig `image/*`-type
 for filformatet. `rel: preview` angir at lenken er et forhåndsvisningsbilde;
 frontend bruker denne lenken på collection-siden og viser standardbildet hvis
 den mangler.
 
-For forsidebildet legges bildefilen i `config/dataset-images` mappen.
+For forsidebildet legges bildefilen i `assets/dataset-images` mappen.
 
 Legg deretter lenken under `metadata.identification.links` i `config/pygeoapi-config.yml`:
 

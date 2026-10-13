@@ -4,5 +4,5 @@ USER 150
 
 COPY config/pygeoapi-config.yml /pygeoapi/pygeoapi-config.yml
 
-COPY config/collection-images/ /pygeoapi/data/collection-images/
-COPY config/dataset-images/ /pygeoapi/data/dataset-images/
+COPY assets/collection-images/ /pygeoapi/data/collection-images/
+COPY assets/dataset-images/ /pygeoapi/data/dataset-images/
