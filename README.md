@@ -19,6 +19,49 @@ Pygeoapi-dokumentasjon: https://docs.pygeoapi.io/en/latest/configuration.html
 
 Eksempel-config [her](/config/pygeoapi-config.yml)
 
+### Bilder
+
+Du kan konfigurere et bilde for forsiden og egne bilder for hver collection.
+
+Legg collection-bilder i `assets/collection-images/` og referer til dem under
+`resources.<collection-id>.links` i `config/pygeoapi-config.yml`. For eksempel:
+
+```yaml
+resources:
+  fylker:
+    links:
+      - type: image/png
+        rel: preview
+        title:
+          nb-NO: Forhåndsvisning
+          en-US: Preview
+        href: /assets/collection-images/fylker.png
+```
+
+Her må filen ligge på `assets/collection-images/fylker.png`. Bruk riktig `image/*`-type
+for filformatet. `rel: preview` angir at lenken er et forhåndsvisningsbilde;
+frontend bruker denne lenken på collection-siden og viser standardbildet hvis
+den mangler.
+
+For forsidebildet legges bildefilen i `assets/dataset-images` mappen.
+
+Legg deretter lenken under `metadata.identification.links` i `config/pygeoapi-config.yml`:
+
+```yaml
+metadata:
+  identification:
+    links:
+      - type: image/png
+        rel: preview
+        title:
+          nb-NO: Forsidebilde
+          en-US: Frontpage image
+        href: /assets/dataset-images/dataset-thumbnail.png
+```
+
+Filnavnet i `href` må stemme med bildefilen, og `type` må samsvare med filformatet.
+Bygg og start backend på nytt etter at du har lagt til eller endret bildefiler.
+
 
 ## Utrulling på SKIP i Kartverket
 ### Apps-repo-oppsett

@@ -44,6 +44,13 @@ metadata:
     keywords_type: theme
     terms_of_service: https://www.kartverket.no/geodataarbeid/norge-digitalt/partsinformasjon/avtaler-og-vilkar/norge-digitalt-lisens
     url: https://www.kartverket.no
+    links:
+      - type: image/png
+        rel: preview
+        title:
+          nb-NO: Forsidebilde
+          en-US: Frontpage image
+        href: /assets/dataset-images/dataset-thumbnail.png
 
   license:
     name: Norge digitalt-lisens
@@ -98,6 +105,12 @@ resources:
         rel: related
         title: Geonorge link
         href: https://kartkatalog.geonorge.no/metadata/administrative-enheter-fylker/6093c8a8-fa80-11e6-bc64-92361f002671
+      - type: image/png
+        rel: preview
+        title:
+          nb-NO: Forhåndsvisning
+          en-US: Preview
+        href: /assets/collection-images/fylker.png
     providers:
       - type: feature
         name: PostgreSQL
