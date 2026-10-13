@@ -1,15 +1,10 @@
 # OGC API starter kit
 
-Utgangspunkt for å sette opp OGC-API-er. Pygeoapi-basert backend og Next-basert frontend.
+Utgangspunkt for å sette opp OGC-API-er. Data + Config -> API!
+
 Mer dokumentasjon her: https://kartverket.github.io/ogcapi-docs/docs
 
 ## Lokal kjøring
-
-For å hente interne docker images lokalt må du autentisere deg via Docker.
-
-1. Lag en PAT (Personal Access Token) på https://github.com/settings/tokens med `read:packages` scope
-2. Kopier token-streng (denne ser du ikke igjen etter dette steget) og autoriser mot Kartverket via Configure SSO
-3. Logg inn med Docker ved f.eks. `echo '<PAT>' | docker login ghcr.io -u <Github-brukernavn> --password-stdin`
 
 Kjør opp appene med
 ```
@@ -69,7 +64,54 @@ Filnavnet i `href` må stemme med bildefilen, og `type` må samsvare med filform
 Bygg og start backend på nytt etter at du har lagt til eller endret bildefiler.
 
 
-## Apps-repo-oppsett
+### Bilder
+
+Du kan konfigurere et bilde for forsiden og egne bilder for hver collection.
+Se [eksempel på løsningen](https://datadeling-ogcapi.atgcp1-dev.kartverket.cloud).
+
+Legg collection-bilder i `config/collection-images/` og referer til dem under
+`resources.<collection-id>.links` i `config/pygeoapi-config.yml`. For eksempel:
+
+```yaml
+resources:
+  fylker:
+    links:
+      - type: image/png
+        rel: preview
+        title:
+          nb-NO: Forhåndsvisning
+          en-US: Preview
+        href: /assets/collection-images/fylker.png
+```
+
+Her må filen ligge på `config/collection-images/fylker.png`. Bruk riktig `image/*`-type
+for filformatet. `rel: preview` angir at lenken er et forhåndsvisningsbilde;
+frontend bruker denne lenken på collection-siden og viser standardbildet hvis
+den mangler.
+
+For forsidebildet legges bildefilen i `config/dataset-images` mappen.
+
+Legg deretter lenken under `metadata.identification.links` i `config/pygeoapi-config.yml`:
+
+```yaml
+metadata:
+  identification:
+    links:
+      - type: image/png
+        rel: preview
+        title:
+          nb-NO: Forsidebilde
+          en-US: Frontpage image
+        href: /assets/dataset-images/dataset-thumbnail.png
+```
+
+Filnavnet i `href` må stemme med bildefilen, og `type` må samsvare med filformatet.
+Bygg og start backend på nytt etter at du har lagt til eller endret bildefiler.
+
+
+
+## Utrulling på SKIP i Kartverket
+### Apps-repo-oppsett
 
 [Fullt eksempel](https://github.com/kartverket/datadeling-apps/blob/main/env/atgcp1-dev/datadeling-ogc-api-starter/ogcapi.jsonnet)
 
@@ -77,7 +119,7 @@ Man trenger også versjons-filer for docker-imagene, f.eks. `ogcapi-frontend-ver
 
 Noen miljøvariabler må settes opp i miljøet appene kjører i, typisk via Application-manifestet.
 
-### Backend:
+#### Backend:
 
 `PYGEOAPI_URL=<backend-ingress>`
 
@@ -88,20 +130,20 @@ DB_NAME=<databasenavn>
 DB_USER=<brukernavn>
 ```
 
-### Frontend
+#### Frontend
 
 ```
 API_BASE_URL=<Kubernetes-ingress til backend>
 API_BASE_URL_PUBLIC=<backend-ingress>
 ```
 
-## Automatisk deploy til dev-miljø
+### Automatisk deploy til dev-miljø
 
 Automatisk deploy til dev-miljøet skjer via `argo`-jobben i byggejobbene. Denne trenger OctoSTS for å fungere.
 
 Hvis man ikke ønsker automatisk deploy så kan man fjerne `argo`-jobbene.
 
-### OctoSTS
+#### OctoSTS
 
 OctoSTS brukes for å gi tilgang til å skrive til apps-repoet deres fra Github Actions i dette repoet,
 og automatisk deploy fungerer ved å oppdatere versjons-filene i apps-repoet.
