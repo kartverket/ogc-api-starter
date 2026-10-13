@@ -3,3 +3,6 @@ FROM ghcr.io/kartverket/datadeling-ogcapi-pygeoapi:pygeoapi-v0.5.1@sha256:adb32d
 USER 150
 
 COPY config/pygeoapi-config.yml /pygeoapi/pygeoapi-config.yml
+
+COPY config/collection-images/ /pygeoapi/data/collection-images/
+COPY config/dataset-images/ /pygeoapi/data/dataset-images/
