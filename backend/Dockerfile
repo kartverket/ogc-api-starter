@@ -1,4 +1,4 @@
-FROM ghcr.io/kartverket/datadeling-ogcapi-pygeoapi:pygeoapi-v0.6.0@sha256:03246d1dd3d081aabdf4b633ef5e6c26b88f640e7bdc6964a4cf37dc4bd6e721
+FROM ghcr.io/kartverket/datadeling-ogcapi-pygeoapi:pygeoapi-v0.6.1@sha256:8233c5b5c5694596bd8f11783311f49cf8c6829509209d731c3c99e2a63f0dab
 
 USER 150
 
