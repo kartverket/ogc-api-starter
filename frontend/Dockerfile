@@ -1,4 +1,4 @@
-FROM ghcr.io/kartverket/datadeling-ogcapi-frontend:frontend-v0.6.0@sha256:9e824fdb44b9cabbf9bbca6adcb7ca91c18b735a8d6ddc821a88ba921e7ae8af
+FROM ghcr.io/kartverket/datadeling-ogcapi-frontend:frontend-v0.6.1@sha256:168b391d3d6c72d0303f73d72335498822b67324411ac2203ec00058d34b2f74
 
 USER 150
 
