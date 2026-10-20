@@ -147,7 +147,7 @@ resources:
         storage_crs: http://www.opengis.net/def/crs/EPSG/0/25833
         options:
           zoom:
-            min: 12
+            min: 5
             max: 18
         format:
           name: pbf
