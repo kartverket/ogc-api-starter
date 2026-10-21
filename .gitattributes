@@ -1,0 +1,2 @@
+# Handle text files automatically and force LF line endings on checkout
+* text=auto eol=lf
