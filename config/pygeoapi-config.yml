@@ -64,6 +64,7 @@ metadata:
     url: https://www.kartverket.no
 
 resources:
+  # Defining these processes is necessary to enable the download of collections
   get-distinct-values:
     type: process
     processor:

@@ -4,6 +4,10 @@ Utgangspunkt for å sette opp OGC-API-er. Data + Config -> API!
 
 Mer dokumentasjon her: https://kartverket.github.io/ogcapi-docs/docs
 
+I tillegg til standard OGC API-funksjonalitet, har vi lagt til støtte for:
+- Nedlasting av hele datasett (collections) som GeoPackage og CSV
+- Nedlasting av deler av datasettet omfattet av naturlige inndelinger som fylker og kommuner
+
 ## Lokal kjøring
 
 Kjør opp appene med
