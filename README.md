@@ -66,6 +66,24 @@ metadata:
 Filnavnet i `href` må stemme med bildefilen, og `type` må samsvare med filformatet.
 Bygg og start backend på nytt etter at du har lagt til eller endret bildefiler.
 
+### Lenke til metadata
+
+For å vise en lenke til metadataposten (f.eks. i Geonorge) legger du til en `links`-oppføring på den aktuelle collectionen i `pygeoapi/pygeoapi-config.yml`:
+
+```yaml
+resources:
+  fylker:
+    type: collection
+    links:
+      - type: text/html
+        rel: related
+        title: Geonorge link
+        href: https://kartkatalog.geonorge.no/metadata/administrative-enheter-fylker/6093c8a8-fa80-11e6-bc64-92361f002671
+```
+
+- Lenken vises som knappen «Collection Metadata» på collection-siden
+- `title` må være nøyaktig `Geonorge link`, ellers vises ikke knappen
+- Lenken er valgfri. Hvis den mangler, vises ingen knapp
 
 ## Utrulling på SKIP i Kartverket
 ### Apps-repo-oppsett
