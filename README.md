@@ -81,8 +81,8 @@ resources:
         href: https://kartkatalog.geonorge.no/metadata/administrative-enheter-fylker/6093c8a8-fa80-11e6-bc64-92361f002671
 ```
 
-- Lenken vises som knappen «Collection Metadata» på collection-siden
-- `title` må være nøyaktig `Geonorge link`, ellers vises ikke knappen
+- Lenken vises som en knapp med teksten fra title, her «Geonorge link»
+- `rel` må være nøyaktig `related`, ellers vises ikke knappen
 - Lenken er valgfri. Hvis den mangler, vises ingen knapp
 
 ## Utrulling på SKIP i Kartverket
